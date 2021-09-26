@@ -64,14 +64,16 @@ public class FragmentTwo extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_two, container, false);
         textView = v.findViewById(R.id.textView);
-        Log.d("TEXT","Receive");
-        Bundle bundle = this.getArguments();
+
+    /*    Bundle bundle = this.getArguments();
         if (bundle!=null) {
-            Log.d("TEXT","Receive");
             String s = bundle.getString("text");
-            Log.d("TEXT","Receive");
             textView.setText(s);
-        }
+        }*/
         return v;
+    }
+
+    public void setData(String eData){
+        textView.setText(eData);
     }
 }

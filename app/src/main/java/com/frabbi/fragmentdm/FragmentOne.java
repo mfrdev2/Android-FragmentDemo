@@ -1,7 +1,9 @@
 package com.frabbi.fragmentdm;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 public class FragmentOne extends Fragment {
     EditText editText;
     Button button;
+    Communicator communicator;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,13 +70,24 @@ public class FragmentOne extends Fragment {
         editText = v.findViewById(R.id.inputTextId);
         button = v.findViewById(R.id.button);
         button.setOnClickListener(view -> {
-            FragmentTwo two = new FragmentTwo();
+            /*FragmentTwo two = new FragmentTwo();
             Bundle bundle = new Bundle();
             String s = editText.getText().toString();
             bundle.putString("text",s);
             two.setArguments(bundle);
-            getFragmentManager().beginTransaction().replace(R.id.container2, two).commit();
+            getFragmentManager().beginTransaction().replace(R.id.container2, two).commit();*/
+            sendData();
         });
         return v;
+    }
+
+    private void sendData() {
+        communicator.dataController(editText.getText().toString());
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        communicator = (Communicator) context;
     }
 }
